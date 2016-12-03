@@ -6,6 +6,7 @@ from blinkt import set_pixel, set_brightness, show, clear
 import os
 import multiprocessing
 
+# candle flicker adapted from https://github.com/pimoroni/blinkt/blob/master/examples/candle.py
 def candle():
     print('candle process started')
     clear()
@@ -27,11 +28,14 @@ def candle():
         time.sleep(wait)
         clear()
 
+# Uses the omxplayer to play the creepy.wav file.
 def creepy():
     print('creepy audio process started')
     while True:
         os.system("omxplayer creepy.wav")
+# You might need to provide the full path to the creepy.wav file: os.system("omxplayer ~/Downloads/creepy.wav")
     
+# learn more at https://docs.python.org/2/library/multiprocessing.html
 b = multiprocessing.Process(target=creepy)
 c = multiprocessing.Process(target=candle)
 
